@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidv4 } from 'uuid';
-import { authenticateToken, AuthRequest } from '../middleware/auth';
+import { authenticateToken, AuthRequest, authLimiter, apiLimiter } from '../middleware';
 import { auditService } from '../services/auditService';
 
 const router = Router();
@@ -27,7 +27,7 @@ const users = [
   },
 ];
 
-router.post('/login', async (req: Request, res: Response) => {
+router.post('/login', authLimiter, async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -68,7 +68,7 @@ router.post('/login', async (req: Request, res: Response) => {
   });
 });
 
-router.post('/logout', authenticateToken, async (req: AuthRequest, res: Response) => {
+router.post('/logout', apiLimiter, authenticateToken, async (req: AuthRequest, res: Response) => {
   if (req.user) {
     await auditService.log({
       action: 'USER_LOGOUT',
@@ -82,11 +82,11 @@ router.post('/logout', authenticateToken, async (req: AuthRequest, res: Response
   res.json({ success: true });
 });
 
-router.get('/me', authenticateToken, (req: AuthRequest, res: Response) => {
+router.get('/me', apiLimiter, authenticateToken, (req: AuthRequest, res: Response) => {
   res.json(req.user);
 });
 
-router.post('/refresh', authenticateToken, (req: AuthRequest, res: Response) => {
+router.post('/refresh', apiLimiter, authenticateToken, (req: AuthRequest, res: Response) => {
   const user = req.user;
   if (!user) {
     res.status(401).json({ success: false, error: 'Invalid token' });

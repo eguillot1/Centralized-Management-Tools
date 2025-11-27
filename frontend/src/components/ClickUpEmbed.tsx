@@ -7,7 +7,20 @@ interface ClickUpEmbedProps {
 export function ClickUpEmbed({ viewUrl, title = 'ClickUp Tasks', height = '600px' }: ClickUpEmbedProps) {
   // ClickUp allows embedding views via iframe
   // The URL should be from ClickUp's share feature
-  const isValidClickUpUrl = viewUrl.includes('clickup.com') || viewUrl.includes('app.clickup.com');
+  // Properly validate URL to ensure it's actually a ClickUp domain
+  const isValidClickUpUrl = (() => {
+    try {
+      const url = new URL(viewUrl);
+      const hostname = url.hostname.toLowerCase();
+      // Check that the hostname ends with clickup.com (prevents subdomain attacks)
+      return hostname === 'clickup.com' || 
+             hostname === 'app.clickup.com' || 
+             hostname === 'sharing.clickup.com' ||
+             hostname.endsWith('.clickup.com');
+    } catch {
+      return false;
+    }
+  })();
 
   if (!viewUrl) {
     return (

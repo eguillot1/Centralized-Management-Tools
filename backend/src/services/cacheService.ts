@@ -80,8 +80,10 @@ export const cacheService = {
         }
       } else {
         // Memory cache pattern invalidation
+        // Remove all asterisks from pattern to get the base prefix
+        const basePattern = pattern.split('*').join('');
         for (const key of memoryCache.keys()) {
-          if (key.includes(pattern.replace('*', ''))) {
+          if (key.includes(basePattern)) {
             memoryCache.delete(key);
           }
         }

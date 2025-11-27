@@ -1,9 +1,10 @@
 import { Router, Response } from 'express';
-import { authenticateToken, requireRole, AuthRequest } from '../middleware/auth';
+import { authenticateToken, requireRole, AuthRequest, apiLimiter } from '../middleware';
 import { auditService } from '../services/auditService';
 
 const router = Router();
 
+router.use(apiLimiter);
 router.use(authenticateToken);
 
 router.get('/', requireRole('admin', 'manager'), async (req: AuthRequest, res: Response) => {

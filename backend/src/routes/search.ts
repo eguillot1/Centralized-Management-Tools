@@ -1,9 +1,10 @@
 import { Router, Response } from 'express';
-import { authenticateToken, AuthRequest } from '../middleware/auth';
+import { authenticateToken, AuthRequest, searchLimiter } from '../middleware';
 import { searchService } from '../services/searchService';
 
 const router = Router();
 
+router.use(searchLimiter);
 router.use(authenticateToken);
 
 router.get('/', async (req: AuthRequest, res: Response) => {

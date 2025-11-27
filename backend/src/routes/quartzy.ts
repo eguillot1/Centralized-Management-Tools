@@ -1,11 +1,12 @@
 import { Router, Response } from 'express';
-import { authenticateToken, AuthRequest } from '../middleware/auth';
+import { authenticateToken, AuthRequest, apiLimiter } from '../middleware';
 import { quartzyService } from '../services/quartzyService';
 import { auditService } from '../services/auditService';
 
 const router = Router();
 
-// Apply authentication to all routes
+// Apply rate limiting and authentication to all routes
+router.use(apiLimiter);
 router.use(authenticateToken);
 
 // Inventory routes
