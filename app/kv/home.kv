@@ -1,0 +1,47 @@
+<HomeScreen>:
+    name: "home"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: app.theme.SPACING
+        padding: app.theme.PADDING
+
+        MDLabel:
+            text: "Centralized Management Tools" #other options: Joe's Unified Management Platform (J.U.M.P), Joe’s Allumiqs Resource Virtual Integration System (J.A.R.V.I.S) or Allumiqs Joe’s Automation eXperience (A.J.A.X)
+            font_style: "H4"
+            halign: "center"
+            color: app.theme.colors.TEXT_PRIMARY
+
+        MDLabel:
+            text: "Welcome!"
+            font_style: "Body1"
+            halign: "center"
+            color: app.theme.colors.TEXT_SECONDARY
+
+        MDButton:
+            style: "filled"
+            radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
+            on_release: app.root.current = "inventory"
+            MDButtonText:
+                text: "Inventory"
+
+        MDButton:
+            style: "filled"
+            radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
+            on_release: app.root.current = "sample_manager"
+            MDButtonText:
+                text: "Sample Manager"
+
+        MDButton:
+            style: "filled"
+            radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
+            on_release: app.root.current = "orders"
+            MDButtonText:
+                text: "Orders"
+
+        MDButton:
+            style: "filled"
+            radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
+            on_release: app.root.current = "settings"
+            MDButtonText:
+                text: "Settings"

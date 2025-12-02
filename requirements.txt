@@ -1,0 +1,29 @@
+# --- Core HTTP client ---
+httpx==0.27.0
+
+# --- Async utilities ---
+anyio==4.3.0
+
+# --- Data validation & models ---
+pydantic==2.8.0
+
+# --- Environment variables (API tokens, IDs) ---
+python-dotenv==1.0.1
+
+# --- Logging utilities ---
+loguru==0.7.2
+
+# --- (Optional but recommended) Caching ---
+aiocache==0.12.2
+
+# --- For building the GUI in Python ---
+kivy==2.3.0
+kivymd==1.2.0
+
+# --- If you later want a FastAPI backend for your UI ---
+fastapi==0.111.0
+uvicorn==0.30.0
+
+# --- Development utilities ---
+black==24.4.2         # code formatting
+ruff==0.5.0           # linting

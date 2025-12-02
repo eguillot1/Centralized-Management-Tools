@@ -1,0 +1,32 @@
+# Global defaults to avoid BoxShadow NoneType/empty errors
+
+<MDScreen>:
+    elevation: 0
+    radius: [app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS]
+    shadow_radius: [0, 0, 0, 0]
+
+<MDRaisedButton>:
+    elevation: 0
+    radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
+    shadow_radius: [0, 0, 0, 0]
+
+<MDCard>:
+    elevation: 0
+    radius: [app.theme.CARD_RADIUS, app.theme.CARD_RADIUS, app.theme.CARD_RADIUS, app.theme.CARD_RADIUS]
+    shadow_radius: [0, 0, 0, 0]
+
+# Safe defaults for common MD layout containers that may mix elevation behavior
+<MDBoxLayout>:
+    elevation: 0
+    radius: [app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS]
+    shadow_radius: [0, 0, 0, 0]
+
+<MDFloatLayout>:
+    elevation: 0
+    radius: [app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS]
+    shadow_radius: [0, 0, 0, 0]
+
+<MDRelativeLayout>:
+    elevation: 0
+    radius: [app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS]
+    shadow_radius: [0, 0, 0, 0]
