@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title or 'Centralized Management Tools' }}</title>
+    <link rel="stylesheet" href="/static/css/tokens.css" />
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <style>
+      /* Minimal reset and layout */
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        color: var(--text-primary);
+        background: var(--color-background);
+      }
+      .app-bar {
+        /* Gradient header using brand colors */
+        background: linear-gradient(90deg, var(--color-primary-1), var(--color-secondary-3));
+        color: white;
+        padding: var(--spacing-md) var(--spacing-lg);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      }
+      .app-title { font-weight: 600; letter-spacing: 0.2px; }
+      .nav {
+        display: flex; gap: var(--spacing-sm); flex-wrap: wrap; margin-top: var(--spacing-sm);
+      }
+      .nav a {
+        color: white; text-decoration: none; opacity: 0.9; padding: 6px 10px; border-radius: 6px;
+        transition: opacity 120ms ease;
+      }
+      .nav a:hover { opacity: 1; background: rgba(255,255,255,0.12); }
+      .container {
+        max-width: var(--max-content-width);
+        margin: 0 auto;
+        padding: var(--spacing-lg);
+      }
+      .card {
+        background: var(--color-surface);
+        border: 1px solid var(--surface-border);
+        border-radius: 12px;
+        padding: var(--spacing-lg);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="app-bar">
+      <div class="container">
+        <div class="app-title">{{ title or 'Centralized Management Tools' }}</div>
+        {% if nav %}
+        <nav class="nav">
+          {% for item in nav %}
+            <a hx-get="{{ item.href }}" hx-target="#content" hx-push-url="true">{{ item.label }}</a>
+          {% endfor %}
+        </nav>
+        {% endif %}
+      </div>
+    </header>
+
+    <main>
+      <div class="container" id="content">
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+  </body>
+</html>

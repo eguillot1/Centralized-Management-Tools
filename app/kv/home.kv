@@ -1,47 +1,76 @@
+## Home screen layout using KivyMD 2.x widgets
+## Uses MDTopAppBar (replaces MDToolbar) and MDDivider (replaces MDSeparator)
 <HomeScreen>:
     name: "home"
 
     MDBoxLayout:
+        ## Vertical container for the entire screen
         orientation: "vertical"
         spacing: app.theme.SPACING
         padding: app.theme.PADDING
 
-        MDLabel:
-            text: "Centralized Management Tools" #other options: Joe's Unified Management Platform (J.U.M.P), Joe’s Allumiqs Resource Virtual Integration System (J.A.R.V.I.S) or Allumiqs Joe’s Automation eXperience (A.J.A.X)
-            font_style: "H4"
-            halign: "center"
-            color: app.theme.colors.TEXT_PRIMARY
+        # Use custom gradient app bar
+        GradientTopAppBar:
+            ## App bar at the top with brand color and white text
+            title: "Centralized Management Tools"
+            elevation: 0
+            text_color: 1, 1, 1, 1
 
-        MDLabel:
-            text: "Welcome!"
-            font_style: "Body1"
-            halign: "center"
-            color: app.theme.colors.TEXT_SECONDARY
+        MDBoxLayout:
+            ## Main content container below the app bar
+            orientation: "vertical"
+            spacing: app.theme.SPACING
+            padding: app.theme.PADDING
+            size_hint_y: None
+            height: self.minimum_height
+            ## Center content and cap width for readability
+            size_hint_x: None
+            width: min(self.parent.width, app.theme.MAX_CONTENT_WIDTH)
+            pos_hint: {"center_x": 0.5}
 
-        MDButton:
-            style: "filled"
-            radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
-            on_release: app.root.current = "inventory"
-            MDButtonText:
-                text: "Inventory"
+            MDLabel:
+                ## Welcome headline. KivyMD 2.x removed font_style presets,
+                ## so we set explicit font_size and custom text color.
+                text: "Welcome!"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: app.theme.colors.TEXT_PRIMARY
+                font_size: "18sp"
 
-        MDButton:
-            style: "filled"
-            radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
-            on_release: app.root.current = "sample_manager"
-            MDButtonText:
-                text: "Sample Manager"
+            ## Thin divider line between the header and actions
+            MDDivider:
+                height: "1dp"
 
-        MDButton:
-            style: "filled"
-            radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
-            on_release: app.root.current = "orders"
-            MDButtonText:
-                text: "Orders"
+            MDGridLayout:
+                ## Restore compact navigation buttons
+                cols: 2
+                spacing: app.theme.SPACING
+                adaptive_height: True
 
-        MDButton:
-            style: "filled"
-            radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
-            on_release: app.root.current = "settings"
-            MDButtonText:
-                text: "Settings"
+                MDButton:
+                    style: "filled"
+                    radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
+                    on_release: app.root.current = "inventory"
+                    MDButtonText:
+                        text: "Inventory"
+
+                MDButton:
+                    style: "filled"
+                    radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
+                    on_release: app.root.current = "sample_manager"
+                    MDButtonText:
+                        text: "Samples"
+
+                MDButton:
+                    style: "filled"
+                    radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
+                    on_release: app.root.current = "orders"
+                    MDButtonText:
+                        text: "Orders"
+
+                MDButton:
+                    style: "filled"
+                    radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
+                    on_release: app.root.current = "settings"
+                    MDButtonText:
+                        text: "Settings"

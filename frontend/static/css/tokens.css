@@ -1,0 +1,22 @@
+:root {
+  /* Colors aligned with Kivy theme tokens */
+  --color-background: #FFFFFF; /* matches AppColors.BACKGROUND_COLOR */
+  --color-surface: #F5F5F5;    /* matches AppColors.SURFACE_COLOR */
+  --surface-border: rgba(0,0,0,0.08);
+
+  --color-primary-1: #00c0f3;  /* AppColors.PRIMARY_COLOR_1 */
+  --color-secondary-3: #36bdb2;/* AppColors.SECONDARY_COLOR_3 */
+
+  --text-primary: #00334f;     /* AppColors.TEXT_PRIMARY */
+  --text-secondary: #006285;   /* AppColors.TEXT_SECONDARY */
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* Layout */
+  --max-content-width: 900px;
+}

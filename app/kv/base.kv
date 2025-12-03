@@ -1,11 +1,14 @@
-# Global defaults to avoid BoxShadow NoneType/empty errors
+## Global defaults to avoid BoxShadow NoneType/empty errors
+## These rules set safe elevation and radius values across common widgets.
 
 <MDScreen>:
     elevation: 0
     radius: [app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS]
     shadow_radius: [0, 0, 0, 0]
+    md_bg_color: app.theme.BACKGROUND
 
-<MDRaisedButton>:
+## KivyMD 2.x button base rule (replaces MDRaisedButton)
+<MDButton>:
     elevation: 0
     radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
     shadow_radius: [0, 0, 0, 0]
@@ -15,7 +18,7 @@
     radius: [app.theme.CARD_RADIUS, app.theme.CARD_RADIUS, app.theme.CARD_RADIUS, app.theme.CARD_RADIUS]
     shadow_radius: [0, 0, 0, 0]
 
-# Safe defaults for common MD layout containers that may mix elevation behavior
+## Safe defaults for common MD layout containers that may mix elevation behavior
 <MDBoxLayout>:
     elevation: 0
     radius: [app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS]
@@ -30,3 +33,13 @@
     elevation: 0
     radius: [app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS]
     shadow_radius: [0, 0, 0, 0]
+
+## KivyMD 2.x app bar (replaces MDToolbar)
+<MDTopAppBar>:
+    elevation: 0
+    shadow_radius: [0, 0, 0, 0]
+    radius: [app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS, app.theme.RADIUS]
+
+## Thin divider line (replaces MDSeparator)
+<MDDivider>:
+    color: app.theme.colors.PRIMARY_COLOR_2

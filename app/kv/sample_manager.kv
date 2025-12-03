@@ -1,6 +1,52 @@
+## Sample Manager screen polished layout
 <SampleManagerScreen>:
     name: "sample_manager"
 
-    MDLabel:
-        text: "Sample Manager"
-        halign: "center"
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: app.theme.SPACING
+        padding: app.theme.PADDING
+
+        MDTopAppBar:
+            title: "Sample Manager"
+            elevation: 0
+            md_bg_color: app.theme.colors.PRIMARY_COLOR_3
+            specific_text_color: 1, 1, 1, 1
+
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: app.theme.SPACING
+            padding: app.theme.PADDING
+            size_hint_y: None
+            height: self.minimum_height
+            ## Center content and cap width for readability
+            size_hint_x: None
+            width: min(self.parent.width, app.theme.MAX_CONTENT_WIDTH)
+            pos_hint: {"center_x": 0.5}
+
+            MDLabel:
+                text: "Manage samples"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: app.theme.colors.TEXT_PRIMARY
+                font_size: "16sp"
+
+            MDDivider:
+                height: "1dp"
+
+            MDGridLayout:
+                cols: 2
+                spacing: app.theme.SPACING
+                adaptive_height: True
+
+                MDButton:
+                    style: "filled"
+                    radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
+                    MDButtonText:
+                        text: "Add Sample"
+
+                MDButton:
+                    style: "filled"
+                    radius: [app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS, app.theme.BUTTON_RADIUS]
+                    MDButtonText:
+                        text: "Import CSV"
